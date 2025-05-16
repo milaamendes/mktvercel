@@ -1,14 +1,9 @@
 {
-  "version": 2,
-  "builds": [{"src": "/*", "use": "@vercel/static"}],
+  "builds": [
+    { "src": "api/index.py", "use": "@vercel/python" }
+  ],
   "routes": [
-    {
-      "src": "/(.*\\.(csv|png))",
-      "headers": {
-        "Content-Type": "text/csv; charset=utf-8",
-        "Cache-Control": "no-cache"
-      }
-    },
-    {"src": "/.*", "dest": "/index.html"}
+    { "src": "/api/(.*)", "dest": "api/index.py" },
+    { "src": "/", "dest": "/frontend/index.html" }
   ]
 }
